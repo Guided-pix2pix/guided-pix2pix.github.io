@@ -5,7 +5,7 @@
 	<title>Guided pix2pix - Results</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 	<meta property="og:title" content="Guided Image-to-Image Translation with Bi-Directional Feature Transformation - Results">
-	<meta property="og:url" content="https://filebox.ece.vt.edu/~Badour/results.html">
+	<meta property="og:url" content="./results.html">
 	<meta property="og:description" content="Guided Image to Image Translation is the problem of translating an input image into a corresponding output image while respecting the constraints specified in the provided guidance image.">
 	<meta name="description" content="bFT, bi-directional feature transformation, is a conditioning scheme that better utilizes the provided guidance image in a guided image to image translation problem.">
 	<meta name="keywords" content="Guided pix2pix, Badour AlBahar, Jia-Bin Huang, Deep Learning, Computer Vision, Pose Transfer, Depth Upsampling, Texture Transfer, bFT, bi-directional">
@@ -41,14 +41,14 @@
 		<br>
 		<!-- end with line. -->
 		<p><hr></p>
-		
+
 		<!-- back to project page -->
 		<div class="row">
 			<div class="col-xs-12 text-left">
-				<a href="https://filebox.ece.vt.edu/~Badour/supp.html">
+				<a href="./supp.html">
 					<button type="button" class="btn btn-link">
 						<font size="4">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Guided Image to Supplementary Material 
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Guided Image to Supplementary Material
 						</font>
 					</button>
 				</a>
@@ -57,7 +57,7 @@
 		</div>
 		<!-- end with line. -->
 		<p><hr></p>
-		
+
 		<div class="row">
 			<div class="col-xs-12 text-left">
 				<h3>Results</h3>
@@ -65,7 +65,7 @@
 				<p>Below we show qualitative results of the three different guided tasks; pose transfer, texture transfer, and depth upsampling using our proposed bi-directional model (bFT), <a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">pix2pix</a>, and state-of-the-art models. </p>
 				</font>
 				<hr>
-				
+
 				<div class="well well-sm">
 					<form class="form-inline">
 						<label for="task-select">Task:&nbsp;</label>
@@ -74,7 +74,7 @@
 								<option value="Texture Transfer">Texture Transfer</option>
 								<option value="Depth Upsampling">Depth Upsampling</option>
 							</select>
-							
+
 						<div id="scale" hidden>
 						<hr style="margin: 7px;">
 						<div class="form-group">
@@ -85,7 +85,7 @@
 								<option value="4x">4x</option>
 							</select>
 						</div> </div>
-						
+
 						<div id="depth-sample" hidden>
 						<hr style="margin: 7px;">
 						<div class="form-group">
@@ -103,7 +103,7 @@
 								<option value="10">10</option>
 							</select>
 						</div> </div>
-						
+
 						<div id="pose-sample">
 						<hr style="margin: 7px;">
 						<div class="form-group">
@@ -136,7 +136,7 @@
 								<option value="25">25</option>
 							</select>
 						</div> </div>
-						
+
 						<div id="dataset" hidden>
 						<hr style="margin: 7px;">
 						<div class="form-group">
@@ -147,7 +147,7 @@
 								<option value="clothes">Clothes</option>
 							</select>
 						</div> </div>
-						
+
 						<div id="texture-sample" hidden>
 						<hr style="margin: 7px;">
 						<div class="form-group">
@@ -165,17 +165,17 @@
 								<option value="10">10</option>
 							</select>
 						</div> </div>
-						
+
 					</form>
-					
-					
+
+
 					<hr style="margin: 7px;">
-					<h5><strong>Input:&nbsp;</strong></h5>						
-					<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/input/1.png" id="input-image" class="img-responsive">
+					<h5><strong>Input:&nbsp;</strong></h5>
+					<img style="float:center; display:inline" src="./pose/input/1.png" id="input-image" class="img-responsive">
 					<hr style="margin: 7px;">
-					<h5><strong>Guide:&nbsp;</strong></h5>	
-					<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/guide/1.png" id="guide-image" class="img-responsive">
-										
+					<h5><strong>Guide:&nbsp;</strong></h5>
+					<img style="float:center; display:inline" src="./pose/guide/1.png" id="guide-image" class="img-responsive">
+
 					<hr style="margin: 7px;">
 					<h5><strong>Method:&nbsp;</strong></h5>
 					<div id="pose-method" >
@@ -205,18 +205,18 @@
 							<li role="presentation" class="active"> <a href="javascript: void(0);" onclick="DepthChangeCurrentView(5);">Ours</a></li>
 						</ul>
 					</div>
-					
+
 					<hr style="margin: 7px;">
 					<div style="width:1200; overflow:auto;">
-						<img style="float:left; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/ours/1.png" id="showoff-img" class="img-responsive">
+						<img style="float:left; display:inline" src="./pose/ours/1.png" id="showoff-img" class="img-responsive">
 					</div>
-				
+
 				</div>
-				
-				
-			
+
+
+
 			</div>
-			
+
 		</div>
 	</div>
 
@@ -273,7 +273,7 @@
 			dataset.style.display = "none";
 
 			DepthChangeSample();
-		
+
 		}else if(task=="Pose Transfer"){
    			pose.style.display = "block";
    			pose_m.style.display = "block";
@@ -283,9 +283,9 @@
    			depth.style.display = "none";
    			depth_m.style.display = "none";
 			dataset.style.display = "none";
-			
+
 			PoseChangeSample();
-			
+
   		}else if(task=="Texture Transfer"){
 			dataset.style.display = "block";
    			texture.style.display = "block";
@@ -295,43 +295,43 @@
    			depth.style.display = "none";
    			scale.style.display = "none";
    			depth_m.style.display = "none";
-			
-			
+
+
 			TextureChangeSample();
   		}
 	}
-	
+
 
 	function ChangeScale(){
 		DepthChangeSample();
 	}
-	
+
 	function DepthChangeSample(){
 		var sample = document.getElementById("depth-sample-select").value;
 		var scale = document.getElementById("scale-select").value;
-		
+
 		if (DepthCurrentView == 'input')
 			path = "./depth/input_" + scale + "/" + sample + ".png";
 		else if (DepthCurrentView == 'target')
 			path = "./depth/target/" + sample + ".png";
-		else	
+		else
 			path = "./depth/results_" + scale + "/" + DepthCurrentView + "/" + sample + ".png";
 		document.getElementById("input-image").src = "./depth/input_" + scale + "/" + sample + ".png";
 		document.getElementById("guide-image").src = "./depth/guide/" + sample + ".png";
 		document.getElementById("showoff-img").src = path;
 	}
-	
+
 	function PoseChangeSample(){
 		var sample = document.getElementById("pose-sample-select").value;
-		document.getElementById("input-image").src = "https://filebox.ece.vt.edu/~Badour/pose/input/" + sample + ".png";
-		document.getElementById("guide-image").src = "https://filebox.ece.vt.edu/~Badour/pose/guide/" + sample + ".png";
-		document.getElementById("showoff-img").src = "https://filebox.ece.vt.edu/~Badour/pose/" + PoseCurrentView + "/" + sample + ".png";
+		document.getElementById("input-image").src = "./pose/input/" + sample + ".png";
+		document.getElementById("guide-image").src = "./pose/guide/" + sample + ".png";
+		document.getElementById("showoff-img").src = "./pose/" + PoseCurrentView + "/" + sample + ".png";
 	}
-	
+
 	function TextureChangeSample(){
 		var sample = document.getElementById("texture-sample-select").value;
 		var dataset = document.getElementById("dataset-select").value;
-		
+
 		document.getElementById("input-image").src = "./texture/"+ dataset + "/input/" + sample + ".png";
 		document.getElementById("guide-image").src = "./texture/"+ dataset + "/guide/" + sample + ".png";
 		document.getElementById("showoff-img").src = "./texture/"+ dataset + "/" + TextureCurrentView + "/" + sample + ".png";
@@ -348,7 +348,7 @@
 		DepthCurrentView = DepthCurrentViewList[idx];
 		DepthChangeSample();
 	}
-	
+
 	function PoseChangeCurrentView(idx){
 		var li_list = document.getElementById("pose-view-ul").children;
 		console.log(idx);
@@ -360,7 +360,7 @@
 		PoseCurrentView = PoseCurrentViewList[idx];
 		PoseChangeSample();
 	}
-	
+
 	function TextureChangeCurrentView(idx){
 		var li_list = document.getElementById("texture-view-ul").children;
 		console.log(idx);

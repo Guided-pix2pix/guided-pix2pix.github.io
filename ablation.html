@@ -5,7 +5,7 @@
 	<title>Guided pix2pix - Ablation Study</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 	<meta property="og:title" content="Guided Image-to-Image Translation with Bi-Directional Feature Transformation - Ablation Study">
-	<meta property="og:url" content="https://filebox.ece.vt.edu/~Badour/ablation.html">
+	<meta property="og:url" content="./ablation.html">
 	<meta property="og:description" content="Guided Image to Image Translation is the problem of translating an input image into a corresponding output image while respecting the constraints specified in the provided guidance image.">
 	<meta name="description" content="bFT, bi-directional feature transformation, is a conditioning scheme that better utilizes the provided guidance image in a guided image to image translation problem.">
 	<meta name="keywords" content="Guided pix2pix, Badour AlBahar, Jia-Bin Huang, Deep Learning, Computer Vision, Pose Transfer, Depth Upsampling, Texture Transfer, bFT, bi-directional">
@@ -42,14 +42,14 @@
 		<br>
 		<!-- end with line. -->
 		<p><hr></p>
-		
+
 		<!-- back to project page -->
 		<div class="row">
 			<div class="col-xs-12 text-left">
-				<a href="https://filebox.ece.vt.edu/~Badour/supp.html">
+				<a href="./supp.html">
 					<button type="button" class="btn btn-link">
 						<font size="4">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Guided Image to Supplementary Material 
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Guided Image to Supplementary Material
 						</font>
 					</button>
 				</a>
@@ -58,7 +58,7 @@
 		</div>
 		<!-- end with line. -->
 		<p><hr></p>
-		
+
 		<!-- Ablation Study -->
 		<div class="row">
 			<div class="col-xs-12 text-left">
@@ -67,7 +67,7 @@
 				<p>Below we show qualitative results of our ablation study on pose transfer and depth upsampling. </p>
 				</font>
 				<hr>
-				
+
 				<div class="well well-sm">
 					<form class="form-inline">
 						<div class="form-group">
@@ -88,7 +88,7 @@
 								<option value="6">bFT location</option>
 							</select>
 						</div>
-						
+
 						<div id="depth-sample" hidden>
 						<hr style="margin: 7px;">
 						<div class="form-group">
@@ -106,7 +106,7 @@
 								<option value="10">10</option>
 							</select>
 						</div> </div>
-						
+
 						<div id="pose-sample">
 						<hr style="margin: 7px;">
 						<div class="form-group">
@@ -124,19 +124,19 @@
 								<option value="10">10</option>
 							</select>
 						</div> </div>
-									
+
 					</form>
-					
+
 					<hr style="margin: 7px;">
-					<h5><strong>Input:&nbsp;</strong></h5>						
-					<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/input/1.png"  id="input-image" class="img-responsive">
+					<h5><strong>Input:&nbsp;</strong></h5>
+					<img style="float:center; display:inline" src="./pose/input/1.png"  id="input-image" class="img-responsive">
 					<hr style="margin: 7px;">
-					<h5><strong>Guide:&nbsp;</strong></h5>	
-					<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/guide/1.png" id="guide-image" class="img-responsive">
-										
+					<h5><strong>Guide:&nbsp;</strong></h5>
+					<img style="float:center; display:inline" src="./pose/guide/1.png" id="guide-image" class="img-responsive">
+
 					<hr style="margin: 7px;">
 					<h5><strong>Method:&nbsp;</strong></h5>
-					
+
 					<div id="1-method">
 						<ul class="nav nav-pills" id="1-view-ul">
 							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView1(0);">Target</a></li>
@@ -146,7 +146,7 @@
 							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView1(4);">Ours</a></li>
 						</ul>
 					</div>
-					
+
 					<div id="2-method" hidden>
 						<ul class="nav nav-pills" id="2-view-ul">
 							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView2(0);">Target</a></li>
@@ -156,7 +156,7 @@
 							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView2(4);">4 layers (Ours)</a></li>
 						</ul>
 					</div>
-					
+
 					<div id="3-method" hidden>
 						<ul class="nav nav-pills" id="3-view-ul">
 							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView3(0);">Target</a></li>
@@ -166,7 +166,7 @@
 							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView3(4);">4 layers (Ours)</a></li>
 						</ul>
 					</div>
-					
+
 					<div id="4-method" hidden>
 						<ul class="nav nav-pills" id="4-view-ul">
 							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView4(0);">Target</a></li>
@@ -175,7 +175,7 @@
 							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView4(3);">Ours</a></li>
 						</ul>
 					</div>
-					
+
 					<div id="5-method" hidden>
 						<ul class="nav nav-pills" id="5-view-ul">
 							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView5(0);">Target</a></li>
@@ -184,8 +184,8 @@
 							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView5(3);">Our FT</a></li>
 						</ul>
 					</div>
-					
-					
+
+
 					<div id="6-method" hidden>
 						<ul class="nav nav-pills" id="6-view-ul">
 							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView6(0);">Target</a></li>
@@ -194,18 +194,18 @@
 							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView6(3);">Ours</a></li>
 						</ul>
 					</div>
-					
+
 					<hr style="margin: 7px;">
 					<div style="width:1200; overflow:auto;">
-						<img style="float:left; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/ablation/ours/1.png" id="showoff-img" class="img-responsive">
+						<img style="float:left; display:inline" src="./pose/ablation/ours/1.png" id="showoff-img" class="img-responsive">
 					</div>
-				
+
 				</div>
-				
-				
-			
+
+
+
 			</div>
-			
+
 		</div>
 	</div>
 
@@ -261,7 +261,7 @@
 			ChangeSample();
   		}
 	}
-	
+
 	function ChangeTest(){
 		var test = document.getElementById("test-select").value;
 		var m1 = document.getElementById("1-method");
@@ -270,7 +270,7 @@
 		var m4 = document.getElementById("4-method");
 		var m5 = document.getElementById("5-method");
 		var m6 = document.getElementById("6-method");
-		
+
 		if (test=="1"){
 			m1.style.display = "block";
 			m2.style.display = "none";
@@ -314,15 +314,15 @@
 			m5.style.display = "none";
 			m6.style.display = "block";
 		}
-		
+
 		ChangeSample();
 	}
-	
-	
+
+
 	function ChangeSample(){
 		var task = document.getElementById("task-select").value;
 		var test = document.getElementById("test-select").value;
-		
+
 		if(task=="Depth Upsampling"){
 			var sample = document.getElementById("depth-sample-select").value;
 			document.getElementById("input-image").src = "./depth/input_16x" + "/" + sample + ".png";
@@ -332,7 +332,7 @@
 					path = "./depth/results_16x/ours/" + sample + ".png";
 				else if (CurrentView1=='target')
 					path = "./depth/target/" + sample + ".png";
-				else 
+				else
 					path = "./depth/ablation/" + CurrentView1 + "/" + sample + ".png";
 				document.getElementById("showoff-img").src = path;
 			}else if (test==2){
@@ -387,36 +387,36 @@
 					path = "./pose/target/" + sample + ".png";
 				else
 					path = "./pose/ablation/" + CurrentView2 + "/" + sample + ".png";
-				document.getElementById("showoff-img").src = path;			
+				document.getElementById("showoff-img").src = path;
 			}else if (test==3){
 				if (CurrentView3=='target')
 					path = "./pose/target/" + sample + ".png";
 				else
 					path = "./pose/ablation/" + CurrentView3 + "/" + sample + ".png";
-				document.getElementById("showoff-img").src = path;			
+				document.getElementById("showoff-img").src = path;
 			}else if (test==4){
 				if (CurrentView4=='target')
 					path = "./pose/target/" + sample + ".png";
 				else
 					path = "./pose/ablation/" + CurrentView4 + "/" + sample + ".png";
-				document.getElementById("showoff-img").src = path;			
+				document.getElementById("showoff-img").src = path;
 			}else if (test==5){
 				if (CurrentView5=='target')
 					path = "./pose/target/" + sample + ".png";
 				else
 					path = "./pose/ablation/" + CurrentView5 + "/" + sample + ".png";
-				document.getElementById("showoff-img").src = path;			
+				document.getElementById("showoff-img").src = path;
 			}else if (test==6){
 				if (CurrentView6=='target')
 					path = "./pose/target/" + sample + ".png";
 				else
 					path = "./pose/ablation/" + CurrentView6 + "/" + sample + ".png";
-				document.getElementById("showoff-img").src = path;			
+				document.getElementById("showoff-img").src = path;
 			}
 		}
 	}
-	
-	
+
+
 	function ChangeCurrentView1(idx){
 		var li_list = document.getElementById("1-view-ul").children;
 		console.log(idx);
@@ -428,7 +428,7 @@
 		CurrentView1 = CurrentViewList1[idx];
 		ChangeSample();
 	}
-	
+
 	function ChangeCurrentView2(idx){
 		var li_list = document.getElementById("2-view-ul").children;
 		console.log(idx);
@@ -440,7 +440,7 @@
 		CurrentView2 = CurrentViewList2[idx];
 		ChangeSample();
 	}
-	
+
 	function ChangeCurrentView3(idx){
 		var li_list = document.getElementById("3-view-ul").children;
 		console.log(idx);
@@ -452,7 +452,7 @@
 		CurrentView3 = CurrentViewList3[idx];
 		ChangeSample();
 	}
-	
+
 	function ChangeCurrentView4(idx){
 		var li_list = document.getElementById("4-view-ul").children;
 		console.log(idx);
@@ -464,7 +464,7 @@
 		CurrentView4 = CurrentViewList4[idx];
 		ChangeSample();
 	}
-	
+
 	function ChangeCurrentView5(idx){
 		var li_list = document.getElementById("5-view-ul").children;
 		console.log(idx);
@@ -476,7 +476,7 @@
 		CurrentView5 = CurrentViewList5[idx];
 		ChangeSample();
 	}
-	
+
 	function ChangeCurrentView6(idx){
 		var li_list = document.getElementById("6-view-ul").children;
 		console.log(idx);
@@ -488,10 +488,10 @@
 		CurrentView6 = CurrentViewList6[idx];
 		ChangeSample();
 	}
-	
-	
-	
-	
+
+
+
+
 	</script>
 
 
