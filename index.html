@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Guided pix2pix</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta property="og:title" content="Guided Image-to-Image Translation with Bi-Directional Feature Transformation">
+	<meta property="og:url" content="https://filebox.ece.vt.edu/~Badour/guided_pix2pix/">
+	<meta property="og:description" content="Guided Image to Image Translation is the problem of translating an input image into a corresponding output image while respecting the constraints specified in the provided guidance image.">
+	<meta name="description" content="bFT, bi-directional feature transformation, is a conditioning scheme that better utilizes the provided guidance image in a guided image to image translation problem.">
+	<meta name="keywords" content="Guided pix2pix, Badour AlBahar, Jia-Bin Huang, Deep Learning, Computer Vision, Pose Transfer, Depth Upsampling, Texture Transfer, bFT, bi-directional">
+	<meta name="author" content="Badour AlBahar">
+	<!-- jQuery -->
+	<script
+		src="https://code.jquery.com/jquery-3.1.0.min.js"
+		integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+		crossorigin="anonymous"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+	
+		<!-- Title and names. -->
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<br>
+				<font size="5">ICCV 2019</font>
+				<h1>Guided Image-to-Image Translation with Bi-Directional Feature Transformation</h1>
+				<br>
+				<font size="5">
+				<a href="https://badouralbahar.github.io/">Badour&nbsp;AlBahar</a> &emsp; <a href="https://filebox.ece.vt.edu/~jbhuang/">Jia-Bin&nbsp;Huang</a>
+				</font>
+			</div>
+			<div class="col-xs-12 text-center">
+				<font size="4">{<a href="mailto:badour@vt.edu">badour</a>, <a href="mailto:jbhuang@vt.edu">jbhuang} </a>@vt.edu</font>
+			</div>
+			<div class="col-xs-12 text-center">
+				<font size="5">Virginia&nbsp;Tech</font>
+			</div>
+		</div>
+		<br>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- Conditioning Schemes. -->
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<p>
+				<font size="4">
+				<a href="https://filebox.ece.vt.edu/~Badour/guided_pix2pix.pdf">Paper (PDF)</a> &emsp; <a href="https://github.com/vt-vl-lab/Guided-pix2pix">Code</a> &emsp; <a href="https://filebox.ece.vt.edu/~Badour/figures/guided_pix2pix_poster.pdf">Poster</a> &emsp; <a href="https://filebox.ece.vt.edu/~Badour/supp.html">Supplementary Material</a>
+				</font>
+			</div>
+		</div>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- Teaser. -->
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/figures/teaser.png" width="100%">
+			</div>
+		</div>
+		<br>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- Abstract. -->
+		<div class="row">
+			<div class="col-xs-12 text-left">
+				<h3 align=center>Abstract</h3>
+				<br>
+				<p align=justify>
+				<font size="4">
+				We address the problem of guided image-to-image translation where we translate an input image into another while respecting the constraints provided by an external, user-provided guidance image. Various types of conditioning mechanisms for leveraging the given guidance image have been explored, including input concatenation, feature concatenation, and conditional affine transformation of feature activations. All these conditioning mechanisms, however, are uni-directional, i.e., no information flow from the input image back to the guidance. To better utilize the constraints of the guidance image, we present a bi-directional feature transformation (bFT) scheme. We show that our novel bFT scheme outperforms other conditioning schemes and has comparable results to state-of-the-art methods on different tasks.</p>
+				</font>
+			</div>
+		</div>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- Conditioning Schemes. -->
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h3 align=center>Conditioning Schemes</h3>
+				<br>
+				<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/figures/conditioning_schemes.png" width="100%">
+				<br><br>
+				<p align=justify>
+				<font size="4">
+				<!-- 
+				There are many schemes to incorporate the additional guidance into the image-to-image translation model. One straight forward scheme is (a) input concatenation, this will assume that we need the guidance image at the first stage of the model. Another scheme is (b) feature concatenation. It assumes that we need the feature representation of the guide before upsampling. In (c) we replace every normalization layer with our novel feature transformation (FT) layer that manipulates the input using scaling and shifting parameters generated from the guide using a parameter generator (PG). We denote this uni-directional scheme as uFT. In this work, we propose (d) a bi-directional feature transformation scheme denoted as bFT. In bFT, the input is manipulated using scaling and shifting parameters generated from the guide and the guide is also manipulated using scaling and shifting parameters generated from the input.
+				-->
+				</font>
+			</div>
+		</div>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- bFT. -->
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h3 align=center>Bi-directional Feature Transformation (bFT)</h3>
+				<br>
+				<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/figures/bFT.png" width="100%">
+				<br><br>
+				<p align=justify>
+				<font size="4">
+				We present a bi-directional feature transformation model to better utilize the additional guidance for guided image-to-image translation problems. In place of every normalization layer in the encoder, we add our novel feature transformation layer. This layer scales and shifts the normalized feature of that layer in a spatially varying manner. The scaling and shifting parameters are generated using a parameter generation model of two convolution layers with a bottleneck of 100 dimension.
+				</font>
+			</div>
+		</div>
+		<br>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- Comparisons -->
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h3 align=center>Qualitative Comparisons</h3>
+				<h3 align=left>Texture Transfer</h3>
+				<br>
+				<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/figures/texture_transfer_results.png" width="100%">
+				<br><br>
+				<h3 align=left>Pose Transfer</h3>
+				<br>
+				<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/figures/pose_transfer_results.png" width="100%">
+				<br><br>
+				<h3 align=left>Depth Upsampling</h3>
+				<br>
+				<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/figures/depth_upsampling_results.png" width="100%">
+				<br><br>
+				
+			</div>
+		</div>
+		<br>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		
+		
+	</div>
+
+<style type="text/css">
+	.container {
+		background-color: #FBFBFC;
+	}
+	.img-responsive {
+		margin: auto;
+	}
+</style>
+
+</body>
+</html>
