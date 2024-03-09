@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Guided pix2pix - Ablation Study</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta property="og:title" content="Guided Image-to-Image Translation with Bi-Directional Feature Transformation - Ablation Study">
+	<meta property="og:url" content="https://filebox.ece.vt.edu/~Badour/ablation.html">
+	<meta property="og:description" content="Guided Image to Image Translation is the problem of translating an input image into a corresponding output image while respecting the constraints specified in the provided guidance image.">
+	<meta name="description" content="bFT, bi-directional feature transformation, is a conditioning scheme that better utilizes the provided guidance image in a guided image to image translation problem.">
+	<meta name="keywords" content="Guided pix2pix, Badour AlBahar, Jia-Bin Huang, Deep Learning, Computer Vision, Pose Transfer, Depth Upsampling, Texture Transfer, bFT, bi-directional">
+	<meta name="author" content="Badour AlBahar">
+	<!-- jQuery -->
+	<script
+		src="https://code.jquery.com/jquery-3.1.0.min.js"
+		integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+		crossorigin="anonymous"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		<!-- Title and names. -->
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<br>
+				<font size="5">ICCV 2019</font>
+				<h1>Guided Image-to-Image Translation with Bi-Directional Feature Transformation</h1>
+				<br>
+				<font size="5">
+				<a href="https://sites.google.com/vt.edu/badouralbahar/home">Badour&nbsp;AlBahar</a> &emsp; <a href="https://filebox.ece.vt.edu/~jbhuang/">Jia-Bin&nbsp;Huang</a>
+				</font>
+			</div>
+			<div class="col-xs-12 text-center">
+				<font size="4">{<a href="mailto:badour@vt.edu">badour</a>, <a href="mailto:jbhuang@vt.edu">jbhuang} </a>@vt.edu</font>
+			</div>
+			<div class="col-xs-12 text-center">
+				<font size="5">Virginia&nbsp;Tech</font>
+			</div>
+		</div>
+		<br>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- back to project page -->
+		<div class="row">
+			<div class="col-xs-12 text-left">
+				<a href="https://filebox.ece.vt.edu/~Badour/supp.html">
+					<button type="button" class="btn btn-link">
+						<font size="4">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Guided Image to Supplementary Material 
+						</font>
+					</button>
+				</a>
+				<br>
+			</div>
+		</div>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- Ablation Study -->
+		<div class="row">
+			<div class="col-xs-12 text-left">
+				<h3>Ablation Study</h3>
+				<font size="4">
+				<p>Below we show qualitative results of our ablation study on pose transfer and depth upsampling. </p>
+				</font>
+				<hr>
+				
+				<div class="well well-sm">
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="task-select">Task:&nbsp;</label>
+							<select class="form-control" id="task-select" oninput="ChangeTask();">
+								<option value="Pose Transfer">Pose Transfer</option>
+								<option value="Depth Upsampling">Depth Upsampling</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="test-select">Test:&nbsp;</label>
+							<select class="form-control" id="test-select" oninput="ChangeTest();">
+								<option value="1">Conditioning Schemes</option>
+								<option value="2">Number of bi-directional feature transformation (FT) layers</option>
+								<option value="3">Number of uni-directional feature transformation (FT) layers</option>
+								<option value="4">Our bi-directional approach using difference affine transformations</option>
+								<option value="5">Final layer transformation using difference affine transformations</option>
+								<option value="6">bFT location</option>
+							</select>
+						</div>
+						
+						<div id="depth-sample" hidden>
+						<hr style="margin: 7px;">
+						<div class="form-group">
+							<label for="depth-sample-select">Sample:&nbsp;</label>
+							<select class="form-control" id="depth-sample-select" oninput="ChangeSample();">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div> </div>
+						
+						<div id="pose-sample">
+						<hr style="margin: 7px;">
+						<div class="form-group">
+							<label for="pose-sample-select">Sample:&nbsp;</label>
+							<select class="form-control" id="pose-sample-select" oninput="ChangeSample();">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div> </div>
+									
+					</form>
+					
+					<hr style="margin: 7px;">
+					<h5><strong>Input:&nbsp;</strong></h5>						
+					<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/input/1.png"  id="input-image" class="img-responsive">
+					<hr style="margin: 7px;">
+					<h5><strong>Guide:&nbsp;</strong></h5>	
+					<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/guide/1.png" id="guide-image" class="img-responsive">
+										
+					<hr style="margin: 7px;">
+					<h5><strong>Method:&nbsp;</strong></h5>
+					
+					<div id="1-method">
+						<ul class="nav nav-pills" id="1-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView1(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView1(1);">Input Concatenation</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView1(2);">Feature Concatenation</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView1(3);">uFT</a></li>
+							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView1(4);">Ours</a></li>
+						</ul>
+					</div>
+					
+					<div id="2-method" hidden>
+						<ul class="nav nav-pills" id="2-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView2(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView2(1);">1 layer</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView2(2);">2 layers</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView2(3);">3 layers</a></li>
+							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView2(4);">4 layers (Ours)</a></li>
+						</ul>
+					</div>
+					
+					<div id="3-method" hidden>
+						<ul class="nav nav-pills" id="3-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView3(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView3(1);">1 layer</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView3(2);">2 layers</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView3(3);">3 layers</a></li>
+							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView3(4);">4 layers (Ours)</a></li>
+						</ul>
+					</div>
+					
+					<div id="4-method" hidden>
+						<ul class="nav nav-pills" id="4-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView4(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView4(1);">AdaIN</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView4(2);">CIN</a></li>
+							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView4(3);">Ours</a></li>
+						</ul>
+					</div>
+					
+					<div id="5-method" hidden>
+						<ul class="nav nav-pills" id="5-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView5(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView5(1);">AdaIN</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView5(2);">CIN</a></li>
+							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView5(3);">Our FT</a></li>
+						</ul>
+					</div>
+					
+					
+					<div id="6-method" hidden>
+						<ul class="nav nav-pills" id="6-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView6(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView6(1);">Encoder to Decoder</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="ChangeCurrentView6(2);">Decoder to Decoder</a></li>
+							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="ChangeCurrentView6(3);">Ours</a></li>
+						</ul>
+					</div>
+					
+					<hr style="margin: 7px;">
+					<div style="width:1200; overflow:auto;">
+						<img style="float:left; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/ablation/ours/1.png" id="showoff-img" class="img-responsive">
+					</div>
+				
+				</div>
+				
+				
+			
+			</div>
+			
+		</div>
+	</div>
+
+	<style type="text/css">
+
+.container {
+	background-color: #FBFBFC;
+}
+.teaser-img {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.img-responsive {
+	margin: auto;
+}
+.comparison-table {
+	table-layout: fixed;
+		word-wrap: break-word;
+}
+.comparison-table th {
+	text-align: center;
+}
+
+
+	</style>
+
+	<script type="text/javascript">
+	var CurrentViewList1 = ["target", "input_concat", "feature_concat", "uFT", "ours"];
+	var CurrentViewList2 = ["target", "bFT_1", "bFT_2", "bFT_3", "ours"];
+	var CurrentViewList3 = ["target", "bFT_1", "uFT_2", "uFT_3", "uFT"];
+	var CurrentViewList4 = ["target", "AdaIN", "CIN", "ours"];
+	var CurrentViewList5 = ["target", "AdaINFL", "CINFL", "FTFL"];
+	var CurrentViewList6 = ["target", "e2d", "DbFT", "ours"];
+	var CurrentView1 = "ours";
+	var CurrentView2 = "ours";
+	var CurrentView3 = "uFT";
+	var CurrentView4 = "ours";
+	var CurrentView5 = "FTFL";
+	var CurrentView6 = "ours";
+
+	function ChangeTask(){
+		var task = document.getElementById("task-select").value;
+		var depth = document.getElementById("depth-sample");
+		var pose = document.getElementById("pose-sample");
+
+		if(task=="Depth Upsampling"){
+			depth.style.display = "block";
+			pose.style.display = "none";
+			ChangeSample();
+  		}else if(task=="Pose Transfer"){
+   			pose.style.display = "block";
+   			depth.style.display = "none";
+			ChangeSample();
+  		}
+	}
+	
+	function ChangeTest(){
+		var test = document.getElementById("test-select").value;
+		var m1 = document.getElementById("1-method");
+		var m2 = document.getElementById("2-method");
+		var m3 = document.getElementById("3-method");
+		var m4 = document.getElementById("4-method");
+		var m5 = document.getElementById("5-method");
+		var m6 = document.getElementById("6-method");
+		
+		if (test=="1"){
+			m1.style.display = "block";
+			m2.style.display = "none";
+			m3.style.display = "none";
+			m4.style.display = "none";
+			m5.style.display = "none";
+			m6.style.display = "none";
+		}else if(test=="2"){
+			m1.style.display = "none";
+			m2.style.display = "block";
+			m3.style.display = "none";
+			m4.style.display = "none";
+			m5.style.display = "none";
+			m6.style.display = "none";
+		}else if(test=="3"){
+			m1.style.display = "none";
+			m2.style.display = "none";
+			m3.style.display = "block";
+			m4.style.display = "none";
+			m5.style.display = "none";
+			m6.style.display = "none";
+		}else if(test=="4"){
+			m1.style.display = "none";
+			m2.style.display = "none";
+			m3.style.display = "none";
+			m4.style.display = "block";
+			m5.style.display = "none";
+			m6.style.display = "none";
+		}else if(test=="5"){
+			m1.style.display = "none";
+			m2.style.display = "none";
+			m3.style.display = "none";
+			m4.style.display = "none";
+			m5.style.display = "block";
+			m6.style.display = "none";
+		}else if(test=="6"){
+			m1.style.display = "none";
+			m2.style.display = "none";
+			m3.style.display = "none";
+			m4.style.display = "none";
+			m5.style.display = "none";
+			m6.style.display = "block";
+		}
+		
+		ChangeSample();
+	}
+	
+	
+	function ChangeSample(){
+		var task = document.getElementById("task-select").value;
+		var test = document.getElementById("test-select").value;
+		
+		if(task=="Depth Upsampling"){
+			var sample = document.getElementById("depth-sample-select").value;
+			document.getElementById("input-image").src = "./depth/input_16x" + "/" + sample + ".png";
+			document.getElementById("guide-image").src = "./depth/guide/" + sample + ".png";
+			if (test==1){
+				if (CurrentView1=='ours')
+					path = "./depth/results_16x/ours/" + sample + ".png";
+				else if (CurrentView1=='target')
+					path = "./depth/target/" + sample + ".png";
+				else 
+					path = "./depth/ablation/" + CurrentView1 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;
+			}else if (test==2){
+				if (CurrentView2=='ours')
+					path = "./depth/results_16x/ours/" + sample + ".png";
+				else if (CurrentView2=='target')
+					path = "./depth/target/" + sample + ".png";
+				else
+					path = "./depth/ablation/" + CurrentView2 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;
+			}else if (test==3){
+				if (CurrentView3=='target')
+					path = "./depth/target/" + sample + ".png";
+				else
+					path = "./depth/ablation/" + CurrentView3 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;
+			}else if (test==4){
+				if (CurrentView4=='ours')
+					path = "./depth/results_16x/ours/" + sample + ".png";
+				else if (CurrentView4=='target')
+					path = "./depth/target/" + sample + ".png";
+				else
+					path = "./depth/ablation/" + CurrentView4 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;
+			}else if (test==5){
+				if (CurrentView5=='target')
+					path = "./depth/target/" + sample + ".png";
+				else
+					path = "./depth/ablation/" + CurrentView5 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;
+			}else if (test==6){
+				if (CurrentView6=='ours')
+					path = "./depth/results_16x/ours/" + sample + ".png";
+				else if (CurrentView6=='target')
+					path = "./depth/target/" + sample + ".png";
+				else
+					path = "./depth/ablation/" + CurrentView6 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;
+			}
+		}else if(task=="Pose Transfer"){
+			var sample = document.getElementById("pose-sample-select").value;
+			document.getElementById("input-image").src = "./pose/input/" + sample + ".png";
+			document.getElementById("guide-image").src = "./pose/guide/" + sample + ".png";
+			if (test==1){
+				if (CurrentView1=='target')
+					path = "./pose/target/" + sample + ".png";
+				else
+					path = "./pose/ablation/" + CurrentView1 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;
+			}else if (test==2){
+				if (CurrentView2=='target')
+					path = "./pose/target/" + sample + ".png";
+				else
+					path = "./pose/ablation/" + CurrentView2 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;			
+			}else if (test==3){
+				if (CurrentView3=='target')
+					path = "./pose/target/" + sample + ".png";
+				else
+					path = "./pose/ablation/" + CurrentView3 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;			
+			}else if (test==4){
+				if (CurrentView4=='target')
+					path = "./pose/target/" + sample + ".png";
+				else
+					path = "./pose/ablation/" + CurrentView4 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;			
+			}else if (test==5){
+				if (CurrentView5=='target')
+					path = "./pose/target/" + sample + ".png";
+				else
+					path = "./pose/ablation/" + CurrentView5 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;			
+			}else if (test==6){
+				if (CurrentView6=='target')
+					path = "./pose/target/" + sample + ".png";
+				else
+					path = "./pose/ablation/" + CurrentView6 + "/" + sample + ".png";
+				document.getElementById("showoff-img").src = path;			
+			}
+		}
+	}
+	
+	
+	function ChangeCurrentView1(idx){
+		var li_list = document.getElementById("1-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		CurrentView1 = CurrentViewList1[idx];
+		ChangeSample();
+	}
+	
+	function ChangeCurrentView2(idx){
+		var li_list = document.getElementById("2-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		CurrentView2 = CurrentViewList2[idx];
+		ChangeSample();
+	}
+	
+	function ChangeCurrentView3(idx){
+		var li_list = document.getElementById("3-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		CurrentView3 = CurrentViewList3[idx];
+		ChangeSample();
+	}
+	
+	function ChangeCurrentView4(idx){
+		var li_list = document.getElementById("4-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		CurrentView4 = CurrentViewList4[idx];
+		ChangeSample();
+	}
+	
+	function ChangeCurrentView5(idx){
+		var li_list = document.getElementById("5-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		CurrentView5 = CurrentViewList5[idx];
+		ChangeSample();
+	}
+	
+	function ChangeCurrentView6(idx){
+		var li_list = document.getElementById("6-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		CurrentView6 = CurrentViewList6[idx];
+		ChangeSample();
+	}
+	
+	
+	
+	
+	</script>
+
+
+</body>
+</html>
