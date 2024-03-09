@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Guided pix2pix - Results</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta property="og:title" content="Guided Image-to-Image Translation with Bi-Directional Feature Transformation - Results">
+	<meta property="og:url" content="https://filebox.ece.vt.edu/~Badour/results.html">
+	<meta property="og:description" content="Guided Image to Image Translation is the problem of translating an input image into a corresponding output image while respecting the constraints specified in the provided guidance image.">
+	<meta name="description" content="bFT, bi-directional feature transformation, is a conditioning scheme that better utilizes the provided guidance image in a guided image to image translation problem.">
+	<meta name="keywords" content="Guided pix2pix, Badour AlBahar, Jia-Bin Huang, Deep Learning, Computer Vision, Pose Transfer, Depth Upsampling, Texture Transfer, bFT, bi-directional">
+	<meta name="author" content="Badour AlBahar">
+	<!-- jQuery -->
+	<script
+		src="https://code.jquery.com/jquery-3.1.0.min.js"
+		integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+		crossorigin="anonymous"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		<!-- Title and names. -->
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<br>
+				<h1>Guided Image-to-Image Translation with Bi-Directional Feature Transformation</h1>
+				<br>
+				<font size="5">
+				<a href="https://sites.google.com/vt.edu/badouralbahar/home">Badour&nbsp;AlBahar</a> &emsp; <a href="https://filebox.ece.vt.edu/~jbhuang/">Jia-Bin&nbsp;Huang</a>
+				</font>
+			</div>
+			<div class="col-xs-12 text-center">
+				<font size="4">{<a href="mailto:badour@vt.edu">badour</a>, <a href="mailto:jbhuang@vt.edu">jbhuang} </a>@vt.edu</font>
+			</div>
+			<div class="col-xs-12 text-center">
+				<font size="5">Virginia&nbsp;Tech</font>
+			</div>
+		</div>
+		<br>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<!-- back to project page -->
+		<div class="row">
+			<div class="col-xs-12 text-left">
+				<a href="https://filebox.ece.vt.edu/~Badour/supp.html">
+					<button type="button" class="btn btn-link">
+						<font size="4">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Guided Image to Supplementary Material 
+						</font>
+					</button>
+				</a>
+				<br>
+			</div>
+		</div>
+		<!-- end with line. -->
+		<p><hr></p>
+		
+		<div class="row">
+			<div class="col-xs-12 text-left">
+				<h3>Results</h3>
+				<font size="4">
+				<p>Below we show qualitative results of the three different guided tasks; pose transfer, texture transfer, and depth upsampling using our proposed bi-directional model (bFT), <a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">pix2pix</a>, and state-of-the-art models. </p>
+				</font>
+				<hr>
+				
+				<div class="well well-sm">
+					<form class="form-inline">
+						<label for="task-select">Task:&nbsp;</label>
+							<select class="form-control" id="task-select" oninput="ChangeTask();">
+								<option value="Pose Transfer">Pose Transfer</option>
+								<option value="Texture Transfer">Texture Transfer</option>
+								<option value="Depth Upsampling">Depth Upsampling</option>
+							</select>
+							
+						<div id="scale" hidden>
+						<hr style="margin: 7px;">
+						<div class="form-group">
+							<label for="scale-select">Scale:&nbsp;</label>
+							<select class="form-control" id="scale-select" oninput="ChangeScale();">
+								<option value="16x">16x</option>
+								<option value="8x">8x</option>
+								<option value="4x">4x</option>
+							</select>
+						</div> </div>
+						
+						<div id="depth-sample" hidden>
+						<hr style="margin: 7px;">
+						<div class="form-group">
+							<label for="depth-sample-select">Sample:&nbsp;</label>
+							<select class="form-control" id="depth-sample-select" oninput="DepthChangeSample();">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div> </div>
+						
+						<div id="pose-sample">
+						<hr style="margin: 7px;">
+						<div class="form-group">
+							<label for="pose-sample-select">Sample:&nbsp;</label>
+							<select class="form-control" id="pose-sample-select" oninput="PoseChangeSample();">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+							</select>
+						</div> </div>
+						
+						<div id="dataset" hidden>
+						<hr style="margin: 7px;">
+						<div class="form-group">
+							<label for="dataset-select">Dataset:&nbsp;</label>
+							<select class="form-control" id="dataset-select" oninput="TextureChangeSample();">
+								<option value="bags">Bags</option>
+								<option value="shoes">Shoes</option>
+								<option value="clothes">Clothes</option>
+							</select>
+						</div> </div>
+						
+						<div id="texture-sample" hidden>
+						<hr style="margin: 7px;">
+						<div class="form-group">
+							<label for="texture-sample-select">Sample:&nbsp;</label>
+							<select class="form-control" id="texture-sample-select" oninput="TextureChangeSample();">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div> </div>
+						
+					</form>
+					
+					
+					<hr style="margin: 7px;">
+					<h5><strong>Input:&nbsp;</strong></h5>						
+					<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/input/1.png" id="input-image" class="img-responsive">
+					<hr style="margin: 7px;">
+					<h5><strong>Guide:&nbsp;</strong></h5>	
+					<img style="float:center; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/guide/1.png" id="guide-image" class="img-responsive">
+										
+					<hr style="margin: 7px;">
+					<h5><strong>Method:&nbsp;</strong></h5>
+					<div id="pose-method" >
+						<ul class="nav nav-pills" id="pose-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="PoseChangeCurrentView(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="PoseChangeCurrentView(1);">Ma et al. (2017)</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="PoseChangeCurrentView(2);">Siarohin et al. (2018)</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="PoseChangeCurrentView(3);">pix2pix</a></li>
+							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="PoseChangeCurrentView(4);">Ours</a></li>
+						</ul>
+					</div>
+					<div id="texture-method" hidden>
+						<ul class="nav nav-pills" id="texture-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="TextureChangeCurrentView(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="TextureChangeCurrentView(1);">Xian et al. (2018)</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="TextureChangeCurrentView(2);">pix2pix</a></li>
+							<li role="presentation" class="active"><a href="javascript: void(0);" onclick="TextureChangeCurrentView(3);">Ours</a></li>
+						</ul>
+					</div>
+					<div id="depth-method" hidden>
+						<ul class="nav nav-pills" id="depth-view-ul">
+							<li role="presentation"><a href="javascript: void(0);" onclick="DepthChangeCurrentView(0);">Target</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="DepthChangeCurrentView(1);">Bicubic</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="DepthChangeCurrentView(2);">Li et al. (DJF)</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="DepthChangeCurrentView(3);">Li et al. (DJFR)</a></li>
+							<li role="presentation"><a href="javascript: void(0);" onclick="DepthChangeCurrentView(4);">pix2pix</a></li>
+							<li role="presentation" class="active"> <a href="javascript: void(0);" onclick="DepthChangeCurrentView(5);">Ours</a></li>
+						</ul>
+					</div>
+					
+					<hr style="margin: 7px;">
+					<div style="width:1200; overflow:auto;">
+						<img style="float:left; display:inline" src="https://filebox.ece.vt.edu/~Badour/pose/ours/1.png" id="showoff-img" class="img-responsive">
+					</div>
+				
+				</div>
+				
+				
+			
+			</div>
+			
+		</div>
+	</div>
+
+	<style type="text/css">
+
+.container {
+	background-color: #FBFBFC;
+}
+.teaser-img {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.img-responsive {
+	margin: auto;
+}
+.comparison-table {
+	table-layout: fixed;
+		word-wrap: break-word;
+}
+.comparison-table th {
+	text-align: center;
+}
+
+
+	</style>
+
+	<script type="text/javascript">
+	var DepthCurrentViewList = ["target", "input", "li", "li_res", "pix2pix", "ours"];
+	var DepthCurrentView = "ours";
+	var PoseCurrentViewList = ["target", "ma", "siarohin", "pix2pix", "ours"];
+	var PoseCurrentView = "ours";
+	var TextureCurrentViewList = ["target", "textureGAN", "pix2pix", "ours"];
+	var TextureCurrentView = "ours";
+
+	function ChangeTask(){
+		var task = document.getElementById("task-select").value;
+		var depth = document.getElementById("depth-sample");
+		var pose = document.getElementById("pose-sample");
+		var texture = document.getElementById("texture-sample");
+		var depth_m = document.getElementById("depth-method");
+		var pose_m = document.getElementById("pose-method");
+		var texture_m = document.getElementById("texture-method");
+		var scale = document.getElementById("scale");
+		var dataset = document.getElementById("dataset");
+
+		if(task=="Depth Upsampling"){
+			scale.style.display = "block";
+			depth.style.display = "block";
+			depth_m.style.display = "block";
+			pose.style.display = "none";
+			texture.style.display = "none";
+			pose_m.style.display = "none";
+			texture_m.style.display = "none";
+			dataset.style.display = "none";
+
+			DepthChangeSample();
+		
+		}else if(task=="Pose Transfer"){
+   			pose.style.display = "block";
+   			pose_m.style.display = "block";
+			scale.style.display = "none";
+   			texture.style.display = "none";
+   			texture_m.style.display = "none";
+   			depth.style.display = "none";
+   			depth_m.style.display = "none";
+			dataset.style.display = "none";
+			
+			PoseChangeSample();
+			
+  		}else if(task=="Texture Transfer"){
+			dataset.style.display = "block";
+   			texture.style.display = "block";
+   			texture_m.style.display = "block";
+   			pose_m.style.display = "none";
+   			pose.style.display = "none";
+   			depth.style.display = "none";
+   			scale.style.display = "none";
+   			depth_m.style.display = "none";
+			
+			
+			TextureChangeSample();
+  		}
+	}
+	
+
+	function ChangeScale(){
+		DepthChangeSample();
+	}
+	
+	function DepthChangeSample(){
+		var sample = document.getElementById("depth-sample-select").value;
+		var scale = document.getElementById("scale-select").value;
+		
+		if (DepthCurrentView == 'input')
+			path = "./depth/input_" + scale + "/" + sample + ".png";
+		else if (DepthCurrentView == 'target')
+			path = "./depth/target/" + sample + ".png";
+		else	
+			path = "./depth/results_" + scale + "/" + DepthCurrentView + "/" + sample + ".png";
+		document.getElementById("input-image").src = "./depth/input_" + scale + "/" + sample + ".png";
+		document.getElementById("guide-image").src = "./depth/guide/" + sample + ".png";
+		document.getElementById("showoff-img").src = path;
+	}
+	
+	function PoseChangeSample(){
+		var sample = document.getElementById("pose-sample-select").value;
+		document.getElementById("input-image").src = "https://filebox.ece.vt.edu/~Badour/pose/input/" + sample + ".png";
+		document.getElementById("guide-image").src = "https://filebox.ece.vt.edu/~Badour/pose/guide/" + sample + ".png";
+		document.getElementById("showoff-img").src = "https://filebox.ece.vt.edu/~Badour/pose/" + PoseCurrentView + "/" + sample + ".png";
+	}
+	
+	function TextureChangeSample(){
+		var sample = document.getElementById("texture-sample-select").value;
+		var dataset = document.getElementById("dataset-select").value;
+		
+		document.getElementById("input-image").src = "./texture/"+ dataset + "/input/" + sample + ".png";
+		document.getElementById("guide-image").src = "./texture/"+ dataset + "/guide/" + sample + ".png";
+		document.getElementById("showoff-img").src = "./texture/"+ dataset + "/" + TextureCurrentView + "/" + sample + ".png";
+	}
+
+	function DepthChangeCurrentView(idx){
+		var li_list = document.getElementById("depth-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		DepthCurrentView = DepthCurrentViewList[idx];
+		DepthChangeSample();
+	}
+	
+	function PoseChangeCurrentView(idx){
+		var li_list = document.getElementById("pose-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		PoseCurrentView = PoseCurrentViewList[idx];
+		PoseChangeSample();
+	}
+	
+	function TextureChangeCurrentView(idx){
+		var li_list = document.getElementById("texture-view-ul").children;
+		console.log(idx);
+		console.log(li_list);
+		for(i = 0; i < li_list.length; i++){
+			li_list[i].className = "";
+		}
+		li_list[idx].className = "active";
+		TextureCurrentView = TextureCurrentViewList[idx];
+		TextureChangeSample();
+	}
+	</script>
+
+
+</body>
+</html>
